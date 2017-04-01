@@ -36,6 +36,6 @@ void sensor(){
     digitalWrite(13, LOW);
   }
 
-  delay(200);
+  delay(500);
 }
 
