@@ -77,13 +77,13 @@ void sensor(){
     parar();
     delay(1000);
     girarDerecha();
-    delay(1000);
+    delay(800);
     if(distancia <= 30){
       girarIzquierda();
-      delay(2000);
+      delay(1200);
       if(distancia <= 30){
         girarIzquierda();
-        delay(1000);
+        delay(800);
         adelante();
       }else{
         adelante();
@@ -95,5 +95,5 @@ void sensor(){
     adelante();
   }
 
-  delay(200);
+  delay(180);
 }
