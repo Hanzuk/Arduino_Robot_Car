@@ -32,6 +32,10 @@ void loop() {
   if(estado == 'D'){
     girarDerecha();
   }
+
+  if(estado == 'S'){
+    parar();
+  }
 }
 
 void adelante(){ 
