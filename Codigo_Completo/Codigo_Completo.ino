@@ -13,7 +13,7 @@ long distancia, tiempo;
 int diodo = 13;
 
 //Variable para el Bluetooth
-int estado = 'S';
+char estado = 'S';
 
 void setup() {
   Serial.begin(9600);
@@ -49,15 +49,15 @@ void atras(){
 void girarIzquierda(){
   digitalWrite(H_IN1, LOW);
   digitalWrite(H_IN2, HIGH);
-  digitalWrite(H_IN3, HIGH);
+  digitalWrite(H_IN3, LOW);
   digitalWrite(H_IN4, LOW);
 }
 
 void girarDerecha(){
-  digitalWrite(H_IN1, HIGH);
+  digitalWrite(H_IN1, LOW);
   digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, HIGH);
+  digitalWrite(H_IN3, HIGH);
+  digitalWrite(H_IN4, LOW);
 }
 
 void parar(){
