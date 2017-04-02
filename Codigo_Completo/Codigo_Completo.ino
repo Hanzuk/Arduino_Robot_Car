@@ -3,9 +3,9 @@
   >> H_IN1 y H_IN2 para el motor derecho
   >> H_IN3 y H_IN4 para el motor izquierdo
 */
-int H_IN1 = 6; 
-int H_IN2 = 5;
-int H_IN3 = 4; 
+int H_IN1 = 10; 
+int H_IN2 = 6;
+int H_IN3 = 5; 
 int H_IN4 = 3;
 
 /*--Variables para el sensor--*/
