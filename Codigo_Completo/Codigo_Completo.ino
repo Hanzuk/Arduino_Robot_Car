@@ -12,6 +12,9 @@ int H_IN4 = 3;
 long distancia, tiempo;
 int diodo = 13;
 
+//Variable para el Bluetooth
+int estado = 'S';
+
 void setup() {
   Serial.begin(9600);
   pinMode(H_IN1, OUTPUT);
@@ -24,8 +27,9 @@ void setup() {
 }
 
 void loop() {
-  adelante();
-  sensor();
+  bluetooth();
+  //adelante();
+  //automatico();
 }
 
 void adelante(){ 
@@ -63,7 +67,7 @@ void parar(){
   digitalWrite(H_IN4, LOW);
 }
 
-void sensor(){
+void automatico(){
   digitalWrite(8, LOW);
   delayMicroseconds(2);
   digitalWrite(8, HIGH);
@@ -96,4 +100,30 @@ void sensor(){
   }
 
   delay(180);
+}
+
+void bluetooth(){
+  if(Serial.available() > 0){
+    estado = Serial.read();
+  }
+
+  if(estado == 'A'){
+    adelante();
+  }
+
+  if(estado == 'R'){
+    atras();
+  }
+
+  if(estado == 'I'){
+    girarIzquierda();
+  }
+
+  if(estado == 'D'){
+    girarDerecha();
+  }
+
+  if(estado == 'S'){
+    parar();
+  }
 }
