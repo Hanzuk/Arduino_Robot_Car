@@ -1,17 +1,17 @@
 //Motor derecho
-int H_IN1 = 10; 
-int H_IN2 = 6;
+int h_IN1 = 10; 
+int h_IN2 = 6;
 //Motor izquierdo
-int H_IN3 = 5; 
-int H_IN4 = 3;
+int h_IN3 = 5; 
+int h_IN4 = 3;
 char estado = 'S';
 
 void setup() {
   Serial.begin(9600);
-  pinMode(H_IN1, OUTPUT);
-  pinMode(H_IN2, OUTPUT);
-  pinMode(H_IN3, OUTPUT);
-  pinMode(H_IN4, OUTPUT);
+  pinMode(h_IN1, OUTPUT);
+  pinMode(h_IN2, OUTPUT);
+  pinMode(h_IN3, OUTPUT);
+  pinMode(h_IN4, OUTPUT);
 }
 
 void loop() {
@@ -41,36 +41,36 @@ void loop() {
 }
 
 void adelante(){ 
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, HIGH);
-  digitalWrite(H_IN3, HIGH);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, HIGH);
+  digitalWrite(h_IN3, HIGH);
+  digitalWrite(h_IN4, LOW);
 }
   
 void atras(){
-  digitalWrite(H_IN1, HIGH);
-  digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, HIGH);
+  digitalWrite(h_IN1, HIGH);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, HIGH);
 } 
     
 void girarIzquierda(){
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, HIGH);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, HIGH);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, LOW);
 }
 
 void girarDerecha(){
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, HIGH);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, HIGH);
+  digitalWrite(h_IN4, LOW);
 }
 
 void parar(){
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, LOW);
 }

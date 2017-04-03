@@ -3,68 +3,70 @@
   >> H_IN1 y H_IN2 para el motor derecho
   >> H_IN3 y H_IN4 para el motor izquierdo
 */
-int H_IN1 = 10; 
-int H_IN2 = 6;
-int H_IN3 = 5; 
-int H_IN4 = 3;
+int h_IN1 = 10; 
+int h_IN2 = 6;
+int h_IN3 = 5; 
+int h_IN4 = 3;
 
 /*--Variables para el sensor--*/
 long distancia, tiempo;
 int diodo = 13;
+int trigger = 8;
+int echo = 9;
 
-//Variable para el Bluetooth
+/*Variable para el Bluetooth*/
 char estado = 'S';
 
-void setup() {
+void setup(){
   Serial.begin(9600);
-  pinMode(H_IN1, OUTPUT);
-  pinMode(H_IN2, OUTPUT);
-  pinMode(H_IN3, OUTPUT);
-  pinMode(H_IN4, OUTPUT);
-  pinMode(8, OUTPUT); //Trigger
-  pinMode(9, INPUT); //Echo
+  pinMode(h_IN1, OUTPUT);
+  pinMode(h_IN2, OUTPUT);
+  pinMode(h_IN3, OUTPUT);
+  pinMode(h_IN4, OUTPUT);
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
   pinMode(diodo, OUTPUT);
 }
 
-void loop() {
+void loop(){
   bluetooth();
   //adelante();
   //automatico();
 }
 
 void adelante(){ 
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, HIGH);
-  digitalWrite(H_IN3, HIGH);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, HIGH);
+  digitalWrite(h_IN3, HIGH);
+  digitalWrite(h_IN4, LOW);
 }
   
 void atras(){
-  digitalWrite(H_IN1, HIGH);
-  digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, HIGH);
+  digitalWrite(h_IN1, HIGH);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, HIGH);
 } 
     
 void girarIzquierda(){
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, HIGH);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, HIGH);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, LOW);
 }
 
 void girarDerecha(){
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, HIGH);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, HIGH);
+  digitalWrite(h_IN4, LOW);
 }
 
 void parar(){
-  digitalWrite(H_IN1, LOW);
-  digitalWrite(H_IN2, LOW);
-  digitalWrite(H_IN3, LOW);
-  digitalWrite(H_IN4, LOW);
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, LOW);
 }
 
 void automatico(){
@@ -84,7 +86,7 @@ void automatico(){
     delay(800);
     if(distancia <= 30){
       girarIzquierda();
-      delay(1200);
+      delay(1000);
       if(distancia <= 30){
         girarIzquierda();
         delay(800);
