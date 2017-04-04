@@ -83,8 +83,8 @@ void automatico(){
     parar();
     delay(1000);
     girarDerecha();
-    delay(800);
-    if(distancia <= 30){
+    delay(1296);
+    /*if(distancia <= 30){
       girarIzquierda();
       delay(1000);
       if(distancia <= 30){
@@ -96,7 +96,7 @@ void automatico(){
       }
     }else{
       adelante();
-    }
+    }*/
   }else{
     adelante();
   }
@@ -127,5 +127,11 @@ void bluetooth(){
 
   if(estado == 'S'){
     parar();
+  }
+
+  if(estado == '1'){
+    parar();
+    delay(1000);
+    automatico();
   }
 }
