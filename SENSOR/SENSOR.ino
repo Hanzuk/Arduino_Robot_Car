@@ -1,41 +1,91 @@
-long distancia, tiempo;
+int h_IN1 = 10; 
+int h_IN2 = 6;
+int h_IN3 = 5; 
+int h_IN4 = 3;
+
 int diodo = 13;
+int trigger = 8;
+int echo = 9;
+long distancia, tiempo;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(8, OUTPUT); //Trigger
-  pinMode(9, INPUT); //Echo
+  pinMode(trigger, OUTPUT); //Trigger
+  pinMode(echo, INPUT); //Echo
   pinMode(diodo, OUTPUT);
 }
 
 void loop() {
   //digitalWrite(diodo, HIGH); //Diodo
-  sensor();
+  automatico();
 }
 
-void sensor(){
-  digitalWrite(8, LOW);
-  delayMicroseconds(2);
-  digitalWrite(8, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(8, LOW);
+void automatico(){
+  digitalWrite(trigger, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(trigger, LOW);
 
-  tiempo = pulseIn(9, HIGH);
-  distancia = (tiempo/2)/29;
+  tiempo = pulseIn(echo, HIGH);
+  distancia = (tiempo/2)/29; //Formula para la distancia en centimetros
+  delay(10);
 
-  if(distancia >= 500 || distancia <= 0){
-    Serial.println("Error");
+  if(distancia <= 50 && distancia >= 2){
+    parar();
+    delay(1500);
+    atras();
+    delay(500);
+    girarDerecha();
+    delay(250);
+    /*if(distancia <= 30){
+      girarIzquierda();
+      delay(1000);
+      if(distancia <= 30){
+        girarIzquierda();
+        delay(800);
+        adelante();
+      }else{
+        adelante();
+      }
+    }else{
+      adelante();
+    }*/
   }else{
-    Serial.println(distancia);
-    Serial.println("cm");
+    adelante();
   }
-
-  if(distancia >= 20){
-    digitalWrite(13, HIGH);
-  }else{
-    digitalWrite(13, LOW);
-  }
-
-  delay(500);
+  delay(180);
 }
 
+void adelante(){ 
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, HIGH);
+  digitalWrite(h_IN3, HIGH);
+  digitalWrite(h_IN4, LOW);
+}
+  
+void atras(){
+  digitalWrite(h_IN1, HIGH);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, HIGH);
+} 
+    
+void girarIzquierda(){
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, HIGH);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, LOW);
+}
+
+void girarDerecha(){
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, HIGH);
+  digitalWrite(h_IN4, LOW);
+}
+
+void parar(){
+  digitalWrite(h_IN1, LOW);
+  digitalWrite(h_IN2, LOW);
+  digitalWrite(h_IN3, LOW);
+  digitalWrite(h_IN4, LOW);
+}
