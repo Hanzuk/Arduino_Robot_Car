@@ -70,13 +70,11 @@ void parar(){
 }
 
 void automatico(){
-  digitalWrite(8, LOW);
-  delayMicroseconds(2);
-  digitalWrite(8, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(8, LOW);
+  digitalWrite(trigger, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(trigger, LOW);
 
-  tiempo = pulseIn(9, HIGH);
+  tiempo = pulseIn(echo, HIGH);
   distancia = (tiempo/2)/29; //Formula para la distancia en centimetros
 
   if(distancia <= 50 && distancia >= 2){
@@ -120,8 +118,6 @@ void bluetooth(){
   }
 
   if(estado == '1'){
-    parar();
-    delay(1000);
     automatico();
   }
 }
