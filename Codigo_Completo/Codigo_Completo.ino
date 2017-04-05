@@ -79,28 +79,18 @@ void automatico(){
   tiempo = pulseIn(9, HIGH);
   distancia = (tiempo/2)/29; //Formula para la distancia en centimetros
 
-  if(distancia <= 30){
+  if(distancia <= 50 && distancia >= 2){
     parar();
     delay(1000);
+    atras();
+    delay(700);
     girarDerecha();
-    delay(1296);
-    /*if(distancia <= 30){
-      girarIzquierda();
-      delay(1000);
-      if(distancia <= 30){
-        girarIzquierda();
-        delay(800);
-        adelante();
-      }else{
-        adelante();
-      }
-    }else{
-      adelante();
-    }*/
+    delay(780);
+    parar();
+    delay(1000);
   }else{
     adelante();
   }
-
   delay(180);
 }
 
