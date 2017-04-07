@@ -10,12 +10,15 @@ int h_IN4 = 3;
 
 /*--Variables para el sensor--*/
 long distancia, tiempo;
-int diodo = 13;
 int trigger = 8;
 int echo = 9;
 
 /*Variable para el Bluetooth*/
 char estado = 'S';
+
+/*Variables para los leds*/
+int diodoWhite = 12;
+//int diodoRed = ?;
 
 void setup(){
   Serial.begin(9600);
@@ -25,13 +28,12 @@ void setup(){
   pinMode(h_IN4, OUTPUT);
   pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
-  pinMode(diodo, OUTPUT);
+  //pinMode(diodoRed, OUTPUT);
+  pinMode(diodoWhite, OUTPUT);
 }
 
 void loop(){
   bluetooth();
-  //adelante();
-  //automatico();
 }
 
 void adelante(){ 
@@ -39,6 +41,7 @@ void adelante(){
   digitalWrite(h_IN2, HIGH);
   digitalWrite(h_IN3, HIGH);
   digitalWrite(h_IN4, LOW);
+  //digitalWrite(diodoRed, LOW);
 }
   
 void atras(){
@@ -46,6 +49,7 @@ void atras(){
   digitalWrite(h_IN2, LOW);
   digitalWrite(h_IN3, LOW);
   digitalWrite(h_IN4, HIGH);
+  //digitalWrite(diodoRed, LOW);
 } 
     
 void girarIzquierda(){
@@ -53,6 +57,7 @@ void girarIzquierda(){
   digitalWrite(h_IN2, HIGH);
   digitalWrite(h_IN3, LOW);
   digitalWrite(h_IN4, LOW);
+  //digitalWrite(diodoRed, LOW);
 }
 
 void girarDerecha(){
@@ -60,6 +65,7 @@ void girarDerecha(){
   digitalWrite(h_IN2, LOW);
   digitalWrite(h_IN3, HIGH);
   digitalWrite(h_IN4, LOW);
+  //digitalWrite(diodoRed, LOW);
 }
 
 void parar(){
@@ -67,12 +73,14 @@ void parar(){
   digitalWrite(h_IN2, LOW);
   digitalWrite(h_IN3, LOW);
   digitalWrite(h_IN4, LOW);
+  //digitalWrite(diodoRed, HIGH);
 }
 
 void automatico(){
-  digitalWrite(trigger, HIGH);
-  delayMicroseconds(5);
   digitalWrite(trigger, LOW);
+  delayMicroseconds(6);
+  digitalWrite(trigger, HIGH);
+  delayMicroseconds(10);
 
   tiempo = pulseIn(echo, HIGH);
   distancia = (tiempo/2)/29; //Formula para la distancia en centimetros
@@ -89,7 +97,7 @@ void automatico(){
   }else{
     adelante();
   }
-  delay(180);
+  delay(300);
 }
 
 void bluetooth(){
@@ -119,5 +127,11 @@ void bluetooth(){
 
   if(estado == '1'){
     automatico();
+  }
+  if(estado == '2'){
+    digitalWrite(diodoWhite, HIGH);
+  }
+  if(estado == '3'){
+    digitalWrite(diodoWhite, LOW);
   }
 }
