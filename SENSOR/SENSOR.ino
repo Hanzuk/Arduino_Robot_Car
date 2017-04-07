@@ -3,7 +3,7 @@ int h_IN2 = 6;
 int h_IN3 = 5; 
 int h_IN4 = 3;
 
-int diodo = 13;
+//int diodo = 12;
 int trigger = 8;
 int echo = 9;
 long distancia, tiempo;
@@ -12,18 +12,19 @@ void setup() {
   Serial.begin(9600);
   pinMode(trigger, OUTPUT); //Trigger
   pinMode(echo, INPUT); //Echo
-  pinMode(diodo, OUTPUT);
+  //pinMode(diodo, OUTPUT);
 }
 
 void loop() {
   //digitalWrite(diodo, HIGH); //Diodo
   automatico();
-}
+} 
 
 void automatico(){
-  digitalWrite(trigger, HIGH);
-  delayMicroseconds(5);
   digitalWrite(trigger, LOW);
+  delayMicroseconds(6);
+  digitalWrite(trigger, HIGH);
+  delayMicroseconds(10);
 
   tiempo = pulseIn(echo, HIGH);
   distancia = (tiempo/2)/29; //Formula para la distancia en centimetros
@@ -41,7 +42,7 @@ void automatico(){
   }else{
     adelante();
   }
-  delay(180);
+  delay(300);
 }
 
 void adelante(){ 
